@@ -243,9 +243,9 @@ export default function App() {
 
   const profileImages = useMemo(
     () => ({
-      primary: theme === 'dark' ? './assets/profile1.png' : './assets/profile1 lightmode.png',
-      hover: theme === 'dark' ? './assets/profile2png.png' : './assets/profile2 lightmode.png',
-      third: theme === 'dark' ? './assets/profile3 darkmode.png' : './assets/profile3 lightmode.png',
+      primary: theme === 'dark' ? './assets/profile1.png' : './assets/profile1-lightmode.png',
+      hover: theme === 'dark' ? './assets/profile2.png' : './assets/profile2-lightmode.png',
+      third: theme === 'dark' ? './assets/profile3-darkmode.png' : './assets/profile3-lightmode.png',
     }),
     [theme]
   );
