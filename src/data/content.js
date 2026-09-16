@@ -88,10 +88,10 @@ const content = {
     { label: 'Instagram', url: 'https://www.instagram.com/maccxiaoobiinn', icon: 'fab fa-instagram', color: '#E4405F' },
   ],
   gallery: [
-    { src: './assets/congresspic.jpg', alt: 'Congress event' },
     { src: './assets/Convention.jpg', alt: 'Convention group photo' },
     { src: './assets/groupphotolibrary.jpg', alt: 'Group photo' },
     { src: './assets/Leadership.jpg', alt: 'Leadership team' },
+    { src: './assets/congresspic.jpg', alt: 'Congress event' },
     { src: './assets/sportsco.jpg', alt: 'Sports event' },
     { src: './assets/teambldgICPEP.jpg', alt: 'Team building' },
     { src: './assets/teambuilding.jpg', alt: 'Team building 2' },

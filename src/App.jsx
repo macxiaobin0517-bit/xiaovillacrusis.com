@@ -243,9 +243,9 @@ export default function App() {
 
   const profileImages = useMemo(
     () => ({
-      primary: theme === 'dark' ? './assets/profile1.png' : './assets/profile1-lightmode.png',
-      hover: theme === 'dark' ? './assets/profile2png.png' : './assets/profile2-lightmode.png',
-      third: theme === 'dark' ? './assets/profile3-darkmode.png' : './assets/profile3-lightmode.png',
+      primary: theme === 'dark' ? './assets/profile1.png' : './assets/profile1 lightmode.png',
+      hover: theme === 'dark' ? './assets/profile2png.png' : './assets/profile2 lightmode.png',
+      third: theme === 'dark' ? './assets/profile3 darkmode.png' : './assets/profile3 lightmode.png',
     }),
     [theme]
   );
@@ -495,7 +495,7 @@ export default function App() {
     ]);
 
     try {
-      await new Promise((resolve) => window.setTimeout(resolve, 500));
+      await new Promise((resolve) => window.setTimeout(resolve, 600));
       const reply = buildLocalChatReply(text);
 
       setChatMessages((current) =>
@@ -524,7 +524,9 @@ export default function App() {
   };
 
   const handleChatSubmit = async (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     const text = chatInput.trim();
     if (!text) {
       return;
@@ -536,6 +538,7 @@ export default function App() {
     ]);
     setChatInput('');
     setChatStatusText('Sending...');
+    setTimeout(() => chatInputRef.current?.focus(), 10);
     await sendToGemini(text, userId);
   };
 
@@ -554,11 +557,11 @@ export default function App() {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto">
-      <header className="mb-12">
-        <div className="flex flex-row items-center gap-8">
+    <div className="px-3 py-4 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+      <header className="mb-8 md:mb-12">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8 tablet-hero">
           <div
-            className="relative group w-44 h-44 flex-shrink-0 overflow-hidden rounded-2xl border border-zinc-800 shadow-2xl cursor-pointer"
+            className="relative group w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 flex-shrink-0 overflow-hidden rounded-2xl border border-zinc-800 shadow-2xl cursor-pointer"
             onClick={() => setThirdPhotoVisible((value) => !value)}
             onMouseLeave={() => setThirdPhotoVisible(false)}
             aria-label="Profile image toggle"
@@ -580,24 +583,24 @@ export default function App() {
             />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2">
-              <h1 className="text-4xl font-bold tracking-tight text-white">Mac Xiaobin Villarusis</h1>
-              <svg className="w-7 h-7 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+          <div className="flex flex-col gap-1 min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">Mac Xiaobin Villarusis</h1>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.3 1.241.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
               </svg>
             </div>
-            <p className="text-zinc-400 flex items-center gap-1.5 text-lg">
+            <p className="text-zinc-400 flex items-center gap-1.5 text-sm sm:text-base md:text-lg">
               <i className="fas fa-map-marker-alt text-sm" />
               Metro Manila, Philippines
             </p>
-            <p className="text-zinc-300 text-xl font-medium mt-2">Software Engineer</p>
+            <p className="text-zinc-300 text-base sm:text-lg md:text-xl font-medium mt-2">Software Engineer</p>
           </div>
 
           <button
             id="theme-toggle"
             aria-label="Toggle color theme"
-            className="ml-auto p-0 rounded-full bg-transparent border-0"
+            className="sm:ml-auto p-0 rounded-full bg-transparent border-0"
             aria-pressed={theme === 'dark'}
             onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
           >
@@ -610,7 +613,7 @@ export default function App() {
         </div>
       </header>
 
-      <div className="flex flex-wrap gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-6">
         <button
           type="button"
           className="cta-btn bg-white text-black hover:bg-gray-200"
@@ -631,8 +634,8 @@ export default function App() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <div className="lg:col-span-8 flex flex-col gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
+        <div className="md:col-span-7 lg:col-span-8 flex flex-col gap-4 tablet-main-pane">
           <section className="card p-6">
             <div className="flex items-center gap-2 mb-4">
               <i className="fas fa-briefcase text-gray-400" />
@@ -742,7 +745,7 @@ export default function App() {
           </section>
         </div>
 
-        <aside className="lg:col-span-4 flex flex-col gap-4">
+        <aside className="md:col-span-5 lg:col-span-4 flex flex-col gap-4 tablet-side-pane">
           <section className="card p-6">
             <div className="flex items-center gap-2 mb-6">
               <i className="fas fa-briefcase text-gray-400" />
@@ -790,7 +793,7 @@ export default function App() {
         </aside>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 tablet-links-grid">
         <section className="card p-4 flex flex-col justify-between">
           <div className="flex items-center gap-2 mb-0 text-gray-400 text-sm">
             <i className="fas fa-users" /> A member of
@@ -1077,32 +1080,43 @@ export default function App() {
         </form>
       </Modal>
 
-      <Modal open={chatOpen} onClose={closeChatModal} titleId="chat-modal-title" className="chat-modal-shell p-0 max-w-sm w-full overflow-hidden rounded-[20px] border border-white/10 shadow-2xl">
-        <header className="chat-modal-header flex items-center justify-between gap-3 border-b border-white/10 bg-[var(--chat-shell)] px-3 py-2.5 text-[var(--text)]">
+      <Modal open={chatOpen} onClose={closeChatModal} titleId="chat-modal-title" className="chat-modal-shell w-[calc(100vw-1.5rem)] max-w-[22rem] overflow-hidden rounded-[24px] border border-white/10 bg-[var(--card-bg)] shadow-[0_22px_50px_rgba(0,0,0,0.3)] sm:max-w-[24rem]">
+        <header className="chat-modal-header flex items-center justify-between gap-3 border-b border-white/10 bg-[linear-gradient(135deg,rgba(58,124,255,0.17),rgba(255,255,255,0.04))] px-3 py-2.5 text-[var(--text)]">
           <div className="flex items-center gap-3">
-            <img src="./assets/profile1.png" alt="Avatar" className="h-9 w-9 rounded-full border border-white/20 object-cover" />
-            <div className="flex items-center gap-2">
-              <div className="text-sm font-semibold" id="chat-title">Xiao</div>
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.9)]" title="Online" aria-label="Online" />
+            <div className="relative">
+              <img src="./assets/profile1.png" alt="Avatar" className="h-9 w-9 rounded-full border border-white/20 object-cover shadow-[0_0_0_2px_rgba(255,255,255,0.08)]" />
+              <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full border-2 border-[var(--card-bg)] bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.9)]" title="Online" aria-label="Online" />
+            </div>
+            <div className="flex flex-col">
+              <div className="text-sm font-semibold leading-none" id="chat-title">Xiao</div>
+              <span className="text-[10px] text-[var(--muted-2)]">Online now</span>
             </div>
           </div>
-          <button type="button" className="chat-modal-close rounded-full bg-white/5 px-2 py-1 text-xs text-gray-300 hover:bg-white/10" onClick={closeChatModal} aria-label="Close chat">
+          <button type="button" className="chat-modal-close flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-xs text-gray-300 transition hover:bg-white/10 hover:text-white" onClick={closeChatModal} aria-label="Close chat">
             ✕
           </button>
         </header>
 
-        <div id="chat-thread" className="chat-thread overflow-y-auto bg-[var(--bg)]" style={{ maxHeight: '42vh' }}>
+        <div id="chat-thread" className="chat-thread overflow-y-auto bg-[var(--bg)]" style={{ maxHeight: 'min(42vh, 360px)' }}>
           {filteredChatMessages.map((message) => (
             <div key={message.id} className={`chat-msg flex py-2 px-3 ${message.who === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[82%] rounded-2xl px-3 py-2 ${message.who === 'user' ? 'bg-[#3a7cff] text-white rounded-br-md' : 'chat-bot-bubble bg-[var(--chat-bubble)] text-[var(--chat-bubble-alt)] rounded-bl-md'}`}>
-                <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.text}</p>
-                <div className={`mt-1 flex items-center gap-2 text-[10px] ${message.who === 'user' ? 'justify-end text-blue-100' : 'justify-start text-gray-400'}`}>
+              <div className={`chat-bubble max-w-[82%] ${message.who === 'user' ? 'chat-bubble-user' : 'chat-bubble-xiao'}`}>
+                {message.status === 'pending' && !message.text ? (
+                  <div className="chat-typing-indicator" aria-label="Xiao is typing" role="status">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                ) : (
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.text}</p>
+                )}
+                <div className={`mt-1.5 flex items-center gap-2 text-[10px] ${message.who === 'user' ? 'justify-end text-blue-100' : 'justify-start text-gray-400'}`}>
                   <span>{renderTime(message.ts)}</span>
-                  {message.status === 'pending' && <span>Sending...</span>}
+                  {message.status === 'pending' && message.text && <span>Sending...</span>}
                   {message.status === 'failed' && (
                     <button
                       type="button"
-                      className="text-[10px] underline text-red-400"
+                      className="text-[10px] underline text-red-300"
                       onClick={() => retryChatMessage(message.id)}
                     >
                       Retry
@@ -1116,21 +1130,34 @@ export default function App() {
 
         <form id="chat-form" className="chat-form flex items-center gap-2 border-t border-white/10 bg-[var(--chat-shell)] px-3 py-2.5" onSubmit={handleChatSubmit}>
           <div className="flex items-center gap-2 text-gray-400">
-            <button type="button" className="chat-emoji-btn flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-lg hover:bg-white/10" aria-label="Add emoji">😊</button>
-            <button type="button" className="chat-attach-btn flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-lg hover:bg-white/10" aria-label="Attach file">📎</button>
+            <button type="button" className="chat-emoji-btn flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-base transition hover:bg-white/10" aria-label="Add emoji">😊</button>
+            <button type="button" className="chat-attach-btn flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-base transition hover:bg-white/10" aria-label="Attach file">📎</button>
           </div>
           <input
             ref={chatInputRef}
             id="chat-input"
             value={chatInput}
             onChange={(event) => setChatInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                if (chatInput.trim()) {
+                  handleChatSubmit(event);
+                }
+              }
+            }}
             className="chat-input input-field flex-1 rounded-full border border-white/10 bg-[var(--chat-bubble)] px-3 py-2 text-sm text-[var(--text)] placeholder:text-[var(--muted-2)] focus:border-[#3a7cff] focus:outline-none"
-            placeholder="Aa"
+            placeholder="Message Xiao..."
             aria-label="Message"
             maxLength={1000}
             required
           />
-          <button type="submit" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#3a7cff] text-base text-white shadow-sm transition hover:bg-[#2f6bf0]" aria-label="Send message">
+          <button
+            type="submit"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(135deg,#5aa0ff,#3a7cff)] text-base text-white shadow-[0_10px_20px_rgba(58,124,255,0.45)] transition hover:scale-[1.03] hover:shadow-[0_12px_24px_rgba(58,124,255,0.55)] disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Send message"
+            disabled={!chatInput.trim()}
+          >
             ➤
           </button>
         </form>
@@ -1140,15 +1167,15 @@ export default function App() {
         © 2026 Mac Xiaobin Villacusis. All rights reserved.
       </footer>
 
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
         <button
           id="chat-btn"
           type="button"
-          className="chat-btn bg-white text-black px-5 py-3 rounded-full font-bold shadow-lg flex items-center gap-2 hover:bg-gray-200 transition"
+          className="chat-btn bg-white text-black px-4 py-2.5 sm:px-5 sm:py-3 rounded-full font-bold shadow-[0_18px_35px_rgba(0,0,0,0.22)] flex items-center gap-2 hover:bg-gray-200 transition duration-200 sm:text-sm"
           aria-label="Chat with Xiao"
           onClick={openChatModal}
         >
-          <i className="far fa-comment-dots text-lg" /> Chat with Xiao
+          <i className="far fa-comment-dots text-base sm:text-lg" /> Chat with Xiao
         </button>
       </div>
     </div>
